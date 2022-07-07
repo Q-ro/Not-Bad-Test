@@ -1,0 +1,16 @@
+write a class that calculates Collatz conjecture (https://en.wikipedia.org/wiki/Collatz_conjecture)
+it should save the resulting sequence of numbers into ResultSequence variable and also print it as it is being calculated;
+
+
+class CollatzCalculator{
+
+	public List<int> ResultSequence;
+
+
+	public void Calculate(int starting_value) 
+	{
+
+	}
+
+
+}

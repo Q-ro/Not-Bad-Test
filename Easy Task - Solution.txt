@@ -1,0 +1,34 @@
+Basic Programming Task
+
+
+you have an integer list of length n
+write a function that allows user to access an item in the list with an arbitrary index i
+if i is greater than maximum index - it should loop back on the list 
+if i is less than 0 - it should loop back reversely
+
+for example you have array as follows
+n=7 (length is 7)
+{1,15,1616,6,25,13,88}
+if requested index i is 3 function returns 6
+if (i==8) result is 15
+if (i==14) result is 1
+if(i==-2) result is 13
+
+
+fill in this function,
+do not use Math or Mathf packages
+it should be pure C# code
+
+public int LoopbackListReader(List<int> list, int i)
+{
+        int value = 0;
+
+        value = list[WrapNumber(0, list.Count, i)];
+
+        return value;
+
+        int WrapNumber(int floor, int ceiling, int valueToWrap)
+        {
+            return (valueToWrap < floor) ? ceiling - (floor - valueToWrap) % (ceiling - floor) : valueToWrap = floor + (valueToWrap - floor) % (ceiling - floor);
+        }
+}

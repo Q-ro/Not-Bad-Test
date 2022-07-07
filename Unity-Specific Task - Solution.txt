@@ -1,0 +1,87 @@
+Unity-Specific Task
+
+Write 2 methods in a Unity-Specific MonoBehaivour combonent template (template provided below)
+
+PrintIntegersWithAFixedDelay(int D) - method that prints all items from list with a delay D(in seconds) between each entry
+
+
+PrintIntegersListInRowsAndColumns(int R, int C)- method that prints all items in list arranged in rows R and columns C.
+If there are not enough items on the list to fill the printed chart then it should fill as much of the chart as possible. 
+If there are too many items on the list to fit on the chart then it should print the chart in such a way that it inludes the ending of the list, example bellow:
+
+--------Given---------
+printedIntegers={23,44,28,27,26,25,31,45}
+Rows=2 
+Columns=3
+--------Printed Result--------
+28 	27 	26
+25	31	45
+----------------------
+
+Decide on datatype for each method yourself
+Each method should run ONLY ONCE!
+Use default Unity methods to call the methods you wrote
+Call the method in any way you deem appropriate 
+Use ItemPrintDelay variable as input parameter for the first method (D)
+Use Rows and Columns variables as input parameters R and C respectfully for the second method
+Use PrintedIntegers variable as list input parameter for both methods
+
+
+You are NOT to create any additional public or private varibles in the class scope (local varibles within methods are okay, you are also allowed to create additional methods if you so choose)
+
+
+
+
+
+
+///////////////////////////Copy-Paste the code bellow to use as template for the test task/////////////////////////////////////////////////////////
+using System.Collections.Generic;
+using UnityEngine;
+
+class TestMonoBehaviour:MonoBehaviour
+{
+	
+  public List<int> PrintedIntegers;
+    public int ItemPrintDelay;
+    public int Rows;
+    public int Columns;
+
+    public IEnumerator PrintIntegersWithAFixedDelay(List<int> list, int D)
+    {
+        foreach (var item in list)
+        {
+            Debug.Log(item);
+            yield return new WaitForSeconds(D);
+        }
+    }
+    public void PrintIntegersListInRowsAndColumns(List<int> list, int R, int C)
+    {
+        string resultString = "";
+
+        for (int i = 0; i < R; i++)
+        {
+            for (int j = 0; j < C; j++)
+            {
+                int currentIndex = (R * i) + j;
+                if (currentIndex < list.Count)
+                    resultString += (list[currentIndex] + "\t");
+                else
+                    resultString += ("  \t");
+            }
+            resultString += ("\n");
+        }
+        Debug.Log("\n--------Printed Result--------\n" + resultString + "----------------");
+    }
+
+    public void Start()
+    {
+        PrintIntegersListInRowsAndColumns(PrintedIntegers, Rows, Columns);
+        StartCoroutine(PrintIntegersWithAFixedDelay(PrintedIntegers, ItemPrintDelay));
+    }
+
+    // Commenting out because it's not needed and will eat up cycles despite being empty
+    // 	public void Update()
+    // {
+    // //default Unity method
+    // }
+}
