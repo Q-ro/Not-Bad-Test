@@ -1,2 +1,2 @@
 # Not-Bad-Test
- Programming test for Not so bad
+ Programming test for Not bad
